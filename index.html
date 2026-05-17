@@ -1,153 +1,564 @@
-<section class="cards-tcc">
-  <h1>Cards Inteligentes de TCC</h1>
-  <p class="sub">Lara foi promovida e tem TAG: ansiedade no novo cargo</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flash Cards TCC - Ansiedade</title>
+  <style>
+    :root{
+      --roxo-escuro:#2d145f;
+      --roxo:#6f3db7;
+      --lilas:#a477dd;
+      --lilas-medio:#caa8ef;
+      --lilas-claro:#f4eaff;
+      --fundo:#fbf7ff;
+      --branco:#ffffff;
+      --borda:#d8b9f2;
+      --texto:#21133c;
+    }
 
-  <div class="grid">
-    <div class="card">
-      <span>01</span>
-      <h2>Ansiedade não é previsão</h2>
-      <p><strong>Pensamento:</strong> “E se eu fracassar?”</p>
-      <p><strong>Resposta TCC:</strong> fui promovida porque existem evidências da minha competência.</p>
-      <p class="acao">Ação: listar 3 motivos reais pelos quais recebi essa promoção.</p>
-    </div>
+    *{ box-sizing:border-box; }
 
-    <div class="card">
-      <span>02</span>
-      <h2>Meu corpo está ativado, não em perigo</h2>
-      <p><strong>Sinais:</strong> coração acelerado, tensão, preocupação, insônia.</p>
-      <p><strong>Resposta TCC:</strong> isso é ansiedade, não uma ameaça real.</p>
-      <p class="acao">Ação: pés no chão + expiração longa + observar 5 objetos.</p>
-    </div>
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, #f1e4ff 0, transparent 28%),
+        radial-gradient(circle at top right, #ead8ff 0, transparent 25%),
+        var(--fundo);
+      color:var(--texto);
+    }
 
-    <div class="card">
-      <span>03</span>
-      <h2>Não preciso saber tudo hoje</h2>
-      <p><strong>Pensamento:</strong> “Preciso dar conta perfeitamente.”</p>
-      <p><strong>Resposta TCC:</strong> competência se constrói com prática, repetição e adaptação.</p>
-      <p class="acao">Frase: estou em fase de aprendizado, não de perfeição.</p>
-    </div>
+    header{
+      text-align:center;
+      padding:28px 20px 10px;
+    }
 
-    <div class="card">
-      <span>04</span>
-      <h2>Preocupação não é preparação</h2>
-      <p><strong>Armadilha:</strong> passar horas antecipando problemas.</p>
-      <p><strong>Pergunta:</strong> estou resolvendo algo ou só sofrendo antes?</p>
-      <p class="acao">Ação: separar problema real de hipótese futura.</p>
-    </div>
+    h1{
+      margin:0;
+      font-size:clamp(32px, 5vw, 60px);
+      letter-spacing:1px;
+      color:var(--roxo-escuro);
+      text-transform:uppercase;
+    }
 
-    <div class="card">
-      <span>05</span>
-      <h2>Posso sentir ansiedade e agir</h2>
-      <p><strong>Erro comum:</strong> achar que preciso estar calma para funcionar.</p>
-      <p><strong>Resposta TCC:</strong> ansiedade é desconfortável, mas não me impede de agir.</p>
-      <p class="acao">Frase: eu posso avançar mesmo ansiosa.</p>
-    </div>
+    .sub{
+      margin:8px 0 0;
+      color:var(--roxo);
+      font-size:clamp(16px, 2vw, 23px);
+      font-weight:600;
+    }
 
-    <div class="card">
-      <span>06</span>
-      <h2>Erro não define competência</h2>
-      <p><strong>Crença:</strong> “Se eu errar, vão descobrir que sou uma fraude.”</p>
-      <p><strong>Resposta TCC:</strong> um erro é um dado, não uma sentença.</p>
-      <p class="acao">Pergunta: eu exigiria perfeição de outra pessoa?</p>
-    </div>
+    .wrap{
+      width:min(1480px, 96%);
+      margin:0 auto 30px;
+    }
 
-    <div class="card destaque">
-      <span>07</span>
-      <h2>Checklist de realidade</h2>
-      <ul>
-        <li>Estou em perigo real agora?</li>
-        <li>Tenho fatos ou estou imaginando?</li>
-        <li>O que está sob meu controle?</li>
-        <li>Qual é o próximo passo pequeno?</li>
-      </ul>
-    </div>
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      border:1px solid var(--borda);
+      border-radius:999px;
+      color:var(--roxo-escuro);
+      font-weight:700;
+      background:white;
+      margin:16px 0 8px;
+    }
 
-    <div class="card destaque">
-      <span>08</span>
-      <h2>Cartão SOS</h2>
-      <p>Eu não preciso controlar tudo.</p>
-      <p>Meu cérebro ansioso exagera ameaças.</p>
-      <p>Ser promovida não aconteceu por acaso.</p>
-      <p class="acao">Um passo possível por vez.</p>
-    </div>
-  </div>
-</section>
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:22px;
+    }
 
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f7f1ea;
-    color: #2f2520;
-  }
+    .card{
+      position:relative;
+      min-height:340px;
+      border-radius:16px;
+      padding:18px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 10% 8%, rgba(177,132,222,.28) 0 16%, transparent 17%),
+        radial-gradient(circle at 92% 8%, rgba(177,132,222,.23) 0 18%, transparent 19%),
+        linear-gradient(180deg, #f7edff 0%, #f3e6ff 58%, #b17de0 100%);
+      border:1px solid var(--borda);
+      box-shadow:0 8px 18px rgba(86, 48, 130, .18);
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
 
-  .cards-tcc {
-    max-width: 1100px;
-    margin: auto;
-    padding: 48px 20px;
-  }
+    .card::after{
+      content:"";
+      position:absolute;
+      left:-15%;
+      right:-15%;
+      bottom:-38px;
+      height:115px;
+      background:rgba(125,76,190,.45);
+      border-radius:55% 45% 0 0;
+      transform:rotate(2deg);
+      z-index:0;
+    }
 
-  h1 {
-    text-align: center;
-    color: #6b3f2a;
-    margin-bottom: 8px;
-  }
+    .card > *{ position:relative; z-index:1; }
 
-  .sub {
-    text-align: center;
-    color: #7a6256;
-    margin-bottom: 32px;
-    font-size: 18px;
-  }
+    .num{
+      width:36px;
+      height:36px;
+      margin:0 auto 16px;
+      border-radius:50%;
+      background:linear-gradient(180deg, #b489e4, #7b4bbd);
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:18px;
+    }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-  }
+    .icon{
+      font-size:42px;
+      margin:2px 0 12px;
+      color:var(--roxo);
+    }
 
-  .card {
-    background: #fffaf6;
-    border: 1px solid #e6d6c9;
-    border-radius: 22px;
-    padding: 24px;
-    box-shadow: 0 8px 24px rgba(80, 50, 30, 0.08);
-  }
+    h2{
+      margin:0 auto 12px;
+      color:var(--roxo-escuro);
+      font-size:clamp(20px, 2vw, 28px);
+      line-height:1.08;
+    }
 
-  .card span {
-    display: inline-block;
-    background: #8b5e3c;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 13px;
-    margin-bottom: 12px;
-  }
+    .card p{
+      margin:6px 0;
+      line-height:1.42;
+      font-size:15px;
+    }
 
-  .card h2 {
-    color: #6b3f2a;
-    font-size: 20px;
-    margin: 0 0 14px;
-  }
+    .mini{
+      color:white;
+      font-weight:600;
+      margin-top:16px;
+    }
 
-  .card p, .card li {
-    line-height: 1.5;
-    font-size: 15px;
-  }
+    .verso{
+      background:white;
+      border:2px solid var(--borda);
+      box-shadow:0 6px 14px rgba(86, 48, 130, .12);
+      text-align:left;
+      min-height:315px;
+    }
 
-  .acao {
-    background: #f0e2d6;
-    padding: 12px;
-    border-radius: 14px;
-    margin-top: 14px;
-    font-weight: bold;
-  }
+    .verso::after{ display:none; }
 
-  .destaque {
-    background: #efe0d2;
-  }
+    .verso h3{
+      text-align:center;
+      background:linear-gradient(180deg, #bd90e6, #986bd8);
+      color:white;
+      border-radius:999px;
+      padding:12px;
+      margin:0 auto 18px;
+      font-size:17px;
+      max-width:210px;
+      line-height:1.2;
+    }
 
-  ul {
-    padding-left: 20px;
-  }
-</style>
+    .verso p, .verso li{
+      font-size:14px;
+      line-height:1.42;
+    }
+
+    .verso ul{
+      padding-left:20px;
+      margin:8px 0;
+    }
+
+    .campo-linha{
+      border-bottom:2px solid #dec7f4;
+      min-height:42px;
+      margin-top:12px;
+      padding:8px;
+      outline:none;
+    }
+
+    .interativo{
+      display:grid;
+      grid-template-columns:1.1fr 1.8fr 1fr;
+      gap:18px;
+      margin-top:16px;
+    }
+
+    .box{
+      background:rgba(255,255,255,.78);
+      border:1.5px solid var(--borda);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 6px 15px rgba(86,48,130,.08);
+    }
+
+    .box h3{
+      margin:0 0 10px;
+      color:var(--roxo-escuro);
+      font-size:18px;
+    }
+
+    .dias, .humores, .escala{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      margin:12px 0;
+    }
+
+    button{
+      cursor:pointer;
+      border:1.5px solid var(--borda);
+      border-radius:999px;
+      background:white;
+      color:var(--roxo-escuro);
+      padding:9px 14px;
+      font-weight:700;
+      transition:.18s ease;
+    }
+
+    button:hover{ transform:translateY(-1px); }
+
+    button.ativo{
+      background:linear-gradient(180deg, #a77bdf, #7648bf);
+      color:white;
+      border-color:#7648bf;
+      box-shadow:0 5px 12px rgba(118,72,191,.25);
+    }
+
+    .humores button{
+      min-width:92px;
+      font-size:14px;
+      border-radius:16px;
+    }
+
+    .escala button{
+      width:34px;
+      height:34px;
+      padding:0;
+    }
+
+    label{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin:10px 0;
+      line-height:1.35;
+      font-weight:600;
+      color:#3b2467;
+    }
+
+    input[type="checkbox"]{
+      width:18px;
+      height:18px;
+      accent-color:#8b5bd0;
+      flex:0 0 auto;
+    }
+
+    textarea{
+      width:100%;
+      min-height:66px;
+      resize:vertical;
+      border:1.5px solid var(--borda);
+      border-radius:12px;
+      padding:12px;
+      font-size:15px;
+      font-family:inherit;
+      background:white;
+      color:var(--texto);
+      outline-color:#9b6fd5;
+      margin:7px 0 13px;
+    }
+
+    .lembrete{
+      text-align:center;
+      background:linear-gradient(180deg, #f7edff, #fff);
+    }
+
+    .botoes{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin:18px 0 6px;
+      flex-wrap:wrap;
+    }
+
+    .primario{
+      background:linear-gradient(180deg, #a77bdf, #7648bf);
+      color:white;
+      border-color:#7648bf;
+    }
+
+    .rodape{
+      text-align:center;
+      color:white;
+      background:linear-gradient(90deg, #a77bdf, #7b4bbd);
+      padding:10px 18px;
+      border-radius:999px;
+      margin:16px auto 0;
+      width:fit-content;
+      max-width:95%;
+      font-weight:700;
+    }
+
+    @media(max-width:1100px){
+      .grid{ grid-template-columns:repeat(2, 1fr); }
+      .interativo{ grid-template-columns:1fr; }
+    }
+
+    @media(max-width:620px){
+      .grid{ grid-template-columns:1fr; }
+      .card{ min-height:280px; }
+      header{ padding-top:20px; }
+      .wrap{ width:92%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Flash Cards – Ansiedade</h1>
+    <p class="sub">Psicoeducação • Informação • Autoconhecimento • Estratégias</p>
+  </header>
+
+  <main class="wrap">
+    <div class="label">FRENTE</div>
+
+    <section class="grid">
+      <article class="card">
+        <div>
+          <div class="num">1</div>
+          <div class="icon">🧠</div>
+          <h2>Ansiedade não é previsão</h2>
+          <p>Pensamentos ansiosos não são fatos. Eu posso observar, questionar e escolher como responder.</p>
+        </div>
+        <p class="mini">Vamos entender melhor.</p>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="num">2</div>
+          <div class="icon">🫁</div>
+          <h2>Meu corpo está ativado, não em perigo</h2>
+          <p><strong>Sinais comuns:</strong></p>
+          <p>Nó na garganta • dor de estômago • tensão muscular • coração acelerado.</p>
+        </div>
+        <p class="mini">Isso é desconforto, não ameaça.</p>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="num">3</div>
+          <div class="icon">🎯</div>
+          <h2>Não preciso saber tudo hoje</h2>
+          <p>Competência se constrói com prática, adaptação e repetição.</p>
+        </div>
+        <p class="mini">Um passo de cada vez.</p>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="num">4</div>
+          <div class="icon">🌬️</div>
+          <h2>Preocupação não é preparação</h2>
+          <p>Pergunte a si mesma: estou resolvendo algo ou apenas sofrendo antes?</p>
+        </div>
+        <p class="mini">Volte para o que está ao seu alcance.</p>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="num">5</div>
+          <div class="icon">✨</div>
+          <h2>Sou capaz de lidar</h2>
+          <p>Já enfrentei desafios antes. Tenho recursos para lidar com este também.</p>
+        </div>
+        <p class="mini">Confiança se treina.</p>
+      </article>
+    </section>
+
+    <div class="label">VERSO</div>
+
+    <section class="grid">
+      <article class="card verso">
+        <div class="num">1</div>
+        <h3>Ansiedade não é previsão</h3>
+        <p>Meus pensamentos são apenas pensamentos. Eles podem estar distorcidos pela ansiedade.</p>
+        <p><strong>Para refletir:</strong></p>
+        <p>Qual pensamento ansioso apareceu hoje?</p>
+        <div class="campo-linha" contenteditable="true"></div>
+      </article>
+
+      <article class="card verso">
+        <div class="num">2</div>
+        <h3>Meu corpo está ativado, não em perigo</h3>
+        <p><strong>Sinais que posso sentir:</strong></p>
+        <ul>
+          <li>Nó na garganta</li>
+          <li>Dor de estômago</li>
+          <li>Tensão muscular</li>
+          <li>Coração acelerado</li>
+          <li>Respiração mais rápida</li>
+        </ul>
+        <p><strong>Para mim:</strong> o que meu corpo está tentando me dizer agora?</p>
+        <div class="campo-linha" contenteditable="true"></div>
+      </article>
+
+      <article class="card verso">
+        <div class="num">3</div>
+        <h3>Não preciso saber tudo hoje</h3>
+        <p>É normal não ter todas as respostas. Posso pedir ajuda, aprender e ajustar.</p>
+        <p><strong>Para mim:</strong> qual pequeno passo posso dar hoje?</p>
+        <div class="campo-linha" contenteditable="true"></div>
+      </article>
+
+      <article class="card verso">
+        <div class="num">4</div>
+        <h3>Preocupação não é preparação</h3>
+        <p>Eu posso focar no que está ao meu alcance agora.</p>
+        <p><strong>Para mim:</strong> o que está ao meu alcance neste momento?</p>
+        <div class="campo-linha" contenteditable="true"></div>
+      </article>
+
+      <article class="card verso">
+        <div class="num">5</div>
+        <h3>Sou capaz de lidar</h3>
+        <p>Estou desenvolvendo resiliência. Posso confiar em mim.</p>
+        <p><strong>Para mim:</strong> do que já me orgulho por ter superado?</p>
+        <div class="campo-linha" contenteditable="true"></div>
+      </article>
+    </section>
+
+    <section class="interativo">
+      <div class="box">
+        <h3>1. Em quais dias você usou os flash cards?</h3>
+        <div class="dias">
+          <button type="button">Seg</button>
+          <button type="button">Ter</button>
+          <button type="button">Qua</button>
+          <button type="button">Qui</button>
+          <button type="button">Sex</button>
+          <button type="button">Sáb</button>
+          <button type="button">Dom</button>
+        </div>
+
+        <label>
+          <input type="checkbox">
+          Usei pelo menos 1 estratégia de enfrentamento hoje 💜
+        </label>
+      </div>
+
+      <div class="box">
+        <h3>2. Como está seu humor agora?</h3>
+        <div class="humores">
+          <button type="button">🙂 Bem</button>
+          <button type="button">😐 Neutro</button>
+          <button type="button">😟 Ansioso(a)</button>
+          <button type="button">😢 Triste</button>
+          <button type="button">😠 Irritado(a)</button>
+          <button type="button">😴 Cansado(a)</button>
+        </div>
+
+        <h3>3. Nível de ansiedade hoje</h3>
+        <p>(0 = nenhuma | 10 = muito intensa)</p>
+        <div class="escala">
+          <button type="button">0</button><button type="button">1</button><button type="button">2</button>
+          <button type="button">3</button><button type="button">4</button><button type="button">5</button>
+          <button type="button">6</button><button type="button">7</button><button type="button">8</button>
+          <button type="button">9</button><button type="button">10</button>
+        </div>
+      </div>
+
+      <div class="box lembrete">
+        <h3>5. Meu lembrete para hoje</h3>
+        <p>💜</p>
+        <p>Eu mereço cuidado, paciência e compreensão.</p>
+        <p>Estou fazendo o meu melhor.</p>
+      </div>
+    </section>
+
+    <section class="box" style="margin-top:18px;">
+      <h3>4. Espaço para refletir</h3>
+      <p><strong>O que aconteceu hoje que me deixou ansiosa?</strong></p>
+      <textarea placeholder="Escreva aqui..."></textarea>
+
+      <p><strong>Que sensação física apareceu?</strong></p>
+      <textarea placeholder="Ex: nó na garganta, dor de estômago, tensão, coração acelerado..."></textarea>
+
+      <p><strong>O que eu posso fazer diferente amanhã?</strong></p>
+      <textarea placeholder="Escreva aqui..."></textarea>
+
+      <div class="botoes">
+        <button class="primario" type="button" onclick="salvar()">Salvar minhas respostas</button>
+        <button type="button" onclick="limparTudo()">Limpar tudo</button>
+      </div>
+    </section>
+
+    <div class="rodape">💜 Você não precisa dar conta de tudo sozinha(o). Busque apoio. Você merece se sentir bem. 💜</div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "flashcards_ansiedade_lara";
+
+    document.querySelectorAll(".dias button").forEach(btn => {
+      btn.addEventListener("click", () => btn.classList.toggle("ativo"));
+    });
+
+    document.querySelectorAll(".humores button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".humores button").forEach(b => b.classList.remove("ativo"));
+        btn.classList.add("ativo");
+      });
+    });
+
+    document.querySelectorAll(".escala button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".escala button").forEach(b => b.classList.remove("ativo"));
+        btn.classList.add("ativo");
+      });
+    });
+
+    function salvar(){
+      const data = {
+        textos: [...document.querySelectorAll("textarea")].map(t => t.value),
+        editaveis: [...document.querySelectorAll("[contenteditable='true']")].map(t => t.innerText),
+        checks: [...document.querySelectorAll("input[type='checkbox']")].map(c => c.checked),
+        ativos: [...document.querySelectorAll("button.ativo")].map(b => b.innerText)
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      alert("Respostas salvas neste navegador 💜");
+    }
+
+    function carregar(){
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const data = JSON.parse(raw);
+
+      document.querySelectorAll("textarea").forEach((t, i) => t.value = data.textos?.[i] || "");
+      document.querySelectorAll("[contenteditable='true']").forEach((t, i) => t.innerText = data.editaveis?.[i] || "");
+      document.querySelectorAll("input[type='checkbox']").forEach((c, i) => c.checked = !!data.checks?.[i]);
+
+      document.querySelectorAll("button").forEach(b => {
+        if(data.ativos?.includes(b.innerText)) b.classList.add("ativo");
+      });
+    }
+
+    function limparTudo(){
+      document.querySelectorAll("textarea").forEach(t => t.value = "");
+      document.querySelectorAll("[contenteditable='true']").forEach(t => t.innerText = "");
+      document.querySelectorAll("input[type='checkbox']").forEach(c => c.checked = false);
+      document.querySelectorAll("button").forEach(b => b.classList.remove("ativo"));
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
+    carregar();
+  </script>
+</body>
+</html>
